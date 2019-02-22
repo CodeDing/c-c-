@@ -34,8 +34,26 @@ using namespace std;
 
 string SEPERATOR("**********************************************************");
 
-void printMatrix(const string msg, int matrix[][10], int start_row, int start_col, int end_row, int end_col) {
+void printSeperator() {
     std::cout<<SEPERATOR<<std::endl;
+}
+
+void printArray(const char *msg, int arr[], int start, int end) {
+    printSeperator();
+    std::cout<<msg<<std::endl;
+    if (start < end) {
+        int i; 
+        for(i = start; i < end; i++) {
+            std::cout<<arr[i]<<" ";
+        }
+    }
+    std::cout<<std::endl;
+    return;
+}
+
+//通用性不够
+void printMatrix(const string msg, int matrix[][10], int start_row, int start_col, int end_row, int end_col) {
+    printSeperator();
     std::cout<<msg<<std::endl;
     int i,j;
     for(i = start_row; i < end_row; i++) {
@@ -47,28 +65,50 @@ void printMatrix(const string msg, int matrix[][10], int start_row, int start_co
     return;
 }
 
-int maxsub(int a[],int n, int *firstCol, int *endCol)   
+int maxsub(int a[],int n, int *start, int *end)   
 {
-    int i,max=0,b=0;
-    *firstCol = 0;
+    int i,max=0,b=0,first;
+    *start = 0;
+    *end = 1;
     for(i=0;i<n;i++)
     {
         if(b > 0)
             b += a[i];
         else {
-           *firstCol = i;
+            if (b < 0 && a[i] > 0) {
+                if (b < max) first = *start;
+                *start = i;
+                //std::cout<<"i="<<i<<", first="<<first<<", start="<<*start<<", b="<<b<<", a[i]="<<a[i]<<std::endl;
+            }
             b = a[i];
         }
         if(b > max) {
-            *endCol = i+1;
+            *end = i+1;
             max = b;
         }
     }
+    if (max < 0) {
+        *start = *end - 1; 
+    } 
+    if (max > 0 && *start > *end) *start = first;
+    std::cout<<"first="<<first<<", start="<<*start<<", end="<<*end<<", max="<<max<<std::endl;
     return max;
 }
 
+
 int main()
 {
+    int max, start, end;
+    int array1[10] = {-2,-1,-9,-8,-17,-78,-45,-12,-23,-8};
+    max = maxsub(array1, 10, &start, &end);
+    printArray("OriginArray: ", array1, 0, 10);
+    printArray("MaxSubArray: ", array1, start, end);
+
+    int array2[20] = {-2,3,1005,-1010,9,20,30,4,90,7,-100009,1001,1,2,3,4,5,6,7,8};
+    max = maxsub(array2, 20, &start, &end);
+    printArray("OriginArray: ", array2, 0, 20);
+    printArray("MaxSubArray: ", array2, start, end);
+
     int n,i,j,k,maxsubrec,maxsubarr;
     int dp[][10] = {
         {2,3,-1,5,10,-18,90,-8,-7,10},
@@ -95,12 +135,6 @@ int main()
             for(k=0;k<n;k++)
                 //row j sum
                 arr[k] += dp[j][k];
-            //std::cout<<SEPERATOR<<std::endl;
-            //std::cout<<"arr: "<<std::endl;
-            //for(k=0; k<n; k++) {
-            //    std::cout<<arr[k]<<" ";
-            //}
-            std::cout<<std::endl;
             int firstColTemp, endColTemp;
             maxsubarr = maxsub(arr,n, &firstColTemp, &endColTemp);
             if(maxsubarr > maxsubrec) { 
