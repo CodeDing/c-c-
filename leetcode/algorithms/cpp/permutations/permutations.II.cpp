@@ -34,9 +34,10 @@ vector<vector<int> > permute(vector<int> &num) {
     }
         
     int pos=0;
+    //sort(vv[0].begin(), vv[0].end());
     while(pos<num.size()-1){
         int size = vv.size();
-        for(int i=0; i<size; i++){
+        for(int i=0; i < size; i++){
             //sort the array, so that the same number will be together
             sort(vv[i].begin()+pos, vv[i].end());
             //take each number to the first
@@ -95,6 +96,7 @@ int main(int argc, char** argv)
     for(int i=0; i<vv.size(); i++) {
         printVector(vv[i]);
     }
+    cout << "Totol number: " << vv.size() << endl;
 
     return 0;
 }

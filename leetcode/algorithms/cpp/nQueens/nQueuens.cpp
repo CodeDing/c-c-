@@ -118,6 +118,7 @@ int main(int argc, char** argv)
     
     vector< vector<string> > result = solveNQueens(n);
     printMatrix(result);
+    cout << "Totol number: " << result.size() <<endl;
     
     return 0;
 }
