@@ -1,14 +1,21 @@
-CC := g++
-CFLAGS := -std=c++11
+CXX := g++
+CXXFLAGS := -std=c++11
 
-all: trie
+CC := gcc
+CFLAGS :=
 
-trie: trie.cpp trie.h
+all: trie trie_ascii
+
+trie: trie.cpp 
+	$(CXX) -o $@ $< $(CXXFLAGS)
+
+trie_ascii: trie_ascii.c
 	$(CC) -o $@ $< $(CFLAGS)
 
 .PHONY:
 clean:
-	rm -rf trie
+	rm -rf trie trie_ascii
 	rm -rf *.o
+	rm -rf a.out
 
 

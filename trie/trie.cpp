@@ -194,7 +194,6 @@ int main()
     word_tree.Insert((const unsigned char *)sentence2.c_str(), sentence2.size(), (unsigned int)1);
     std::cout<<"Second insert: "<<word_tree.GetChildSize()<<std::endl;;
 
-    
 
     std::string word1("美国川普是个逗逼");
     unsigned int v = 1;
