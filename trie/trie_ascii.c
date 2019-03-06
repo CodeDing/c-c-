@@ -57,10 +57,8 @@ void Traverse(TrieNode *cur) {
     }
     for(i = 0; i < MAX; i++) {
         theWord[pos++] = i; 
-        //printf("i = %d, pos = %d\n", i, pos);
         Traverse(cur->next[i]);
         pos--;
-        //printf("pos-- = %d\n", pos);
     }
     return;
 }
