@@ -91,7 +91,6 @@ int maximumSwapVersion2(int num) {
     int maxn = arr[0];
     int index = 0;
     int max_index = 0;
-    //9774821 , 98878323
     for(i=1; i < n; i++) {
         if(maxn < arr[i]) {
           for(j = i+1; j < n; j++) {
@@ -118,8 +117,6 @@ int maximumSwapVersion2(int num) {
 }
 
 int maximumSwapVersion3(int num) {
-    //988823437
-    //arr[0..n]={7,3,4,3,2,8,8,8,9}
     int arr[20] = {0};
     int back = num, n = 0;
     while(back){
@@ -134,9 +131,6 @@ int maximumSwapVersion3(int num) {
     for(i=0; i<n; i++) {
         bucket[arr[i]] = i;     
     }
-    //118923234
-    //bucket[1] = 1
-    //bucket[9] = 3
     int index =0;
     int max_index = 0;
     for(i=0; i<n; i++){

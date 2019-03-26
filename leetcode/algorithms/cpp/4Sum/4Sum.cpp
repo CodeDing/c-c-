@@ -35,9 +35,9 @@ vector<vector<int> > threeSum(vector<int> num, int target);
  */
 
 vector<vector<int> > fourSum(vector<int> &num, int target) {
-    vector< vector<int> > result;
+    vector<vector<int> > result;
     if (num.size()<4) return result;
-    sort( num.begin(), num.end() );
+    sort(num.begin(), num.end());
     
     for(int i=0; i<num.size()-3; i++) {
         //skip the duplication
