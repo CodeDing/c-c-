@@ -2,6 +2,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+List *Init(ElemType *arr, int n) {
+    
+}
+
 void Insert(Node *p, ElemType i) {
     Node *n = (Node *)malloc(sizeof(Node));
     n->val = i;

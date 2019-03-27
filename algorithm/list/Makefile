@@ -1,20 +1,19 @@
 CC:=gcc
 CFLAGS:=
 
-OBJ=heap.o
+LIST_OBJ=main.o
 
-EXEC_TARGET=heap
+LIST_TARGET=list
 
 .DEFAULT:all
 
-all: $(EXEC_TARGET)
+all: $(LIST_TARGET)
 
-$(EXEC_TARGET): $(OBJ)
+$(LIST_TARGET): $(LIST_OBJ)
 	$(CC) -o $@ $^ $(CFLAGS)
-
-
 
 .PHONY: clean
 clean:
 	@rm -rf *.o
-	@rm -rf $(EXEC_TARGET)
+	@rm -rf *.out
+	@rm -rf $(LIST_TARGET)
